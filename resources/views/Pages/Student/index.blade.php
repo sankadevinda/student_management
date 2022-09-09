@@ -69,7 +69,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('student.delete' , $students->id) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
-                                    <a href="{{ route('student.edit' , $students->id) }}"  class="btn btn-primary"><i class="fa-solid fa-pencil"  ></i></a>
+                                    <a href="javascript:void(0);"  class="btn btn-primary"><i class="fa-solid fa-pencil" onclick="taskEditModal({{ $students->id }})" ></i></a>
                                     @if ($students->status == 0)
                                         <a href="{{ route('student.status' , $students->id) }}" class="btn btn-success">Active<i class="fa-solid fa-check"></i></a>
                                     @else
@@ -97,12 +97,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" id="taskEdiContent">
-          @yield('content')
+          @include('Pages.Student.edit')
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Update</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -123,9 +120,9 @@
 @push('js')
 
 <script>
-    function taskEditModal(task_id){
+    function taskEditModal(students_id){
         var data = {
-            task_id: task_id,
+            students_id: students_id,
         };
         $.ajax({
             url:"{{ route('student.edit') }}",
