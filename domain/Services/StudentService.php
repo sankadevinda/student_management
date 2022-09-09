@@ -61,8 +61,8 @@ class StudentService
     }
 
     //new data and past data merge
-    protected function edit(student $task , $data){
-        return array_merge($task->toArray(),$data);
+    protected function edit(student $student , $data){
+        return array_merge($student->toArray(),$data);
     }
 }
 
